@@ -9,9 +9,9 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-:root {
-  --bg:#07111f; --panel:#101e31; --text:#f2f7fc; --muted:#91a6bd;
-  --cyan:#48d9d0; --blue:#579bff; --green:#38c98b; --red:#ff6b7a;
+:root{
+  --bg:#07111f;--text:#f2f7fc;--muted:#91a6bd;
+  --cyan:#48d9d0;--blue:#579bff;--green:#38c98b;--red:#ff6b7a;
   --border:rgba(155,190,220,.15);
 }
 *{box-sizing:border-box}
@@ -87,9 +87,15 @@ footer{text-align:center;color:#71879e;font-size:11px;line-height:1.9;margin-top
 footer span{color:#a9bfd4}
 .hidden{display:none!important}
 @media(max-width:600px){
- body{padding:16px 10px}.hero{padding:24px 20px}.content{padding:22px 17px}
- .question-card{padding:16px 13px}.question-text{font-size:14px}.option{padding:11px;font-size:12px}
- .review-wrap{padding:22px 17px}.brand{font-size:11px}.status{font-size:9px}
+  body{padding:16px 10px}
+  .hero{padding:24px 20px}
+  .content{padding:22px 17px}
+  .question-card{padding:16px 13px}
+  .question-text{font-size:14px}
+  .option{padding:11px;font-size:12px}
+  .review-wrap{padding:22px 17px}
+  .brand{font-size:11px}
+  .status{font-size:9px}
 }
 </style>
 </head>
@@ -115,7 +121,7 @@ footer span{color:#a9bfd4}
       <div class="prayer">Before you begin your exam<strong>صلّي على النبي ﷺ ❤️</strong></div>
       <label class="field-label" for="studentName">Student full name</label>
       <input id="studentName" type="text" placeholder="Enter your name" maxlength="80" autocomplete="name">
-      <button class="btn btn-primary" id="startBtn">Start Exam →</button>
+      <button type="button" class="btn btn-primary" id="startBtn">Start Exam →</button>
       <div class="notice">Read each question carefully. You can select only one answer per question.</div>
       <div class="error" id="startError">Please enter your name before starting.</div>
     </section>
@@ -127,7 +133,7 @@ footer span{color:#a9bfd4}
       </div>
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
       <div id="questionsContainer"></div>
-      <button class="btn btn-primary" id="submitBtn">Submit Exam</button>
+      <button type="button" class="btn btn-primary" id="submitBtn">Submit Exam</button>
       <div class="error" id="submitError">Please answer all questions before submitting.</div>
       <div class="notice">Your selected answer will be locked. Review your choices before submitting.</div>
     </section>
@@ -138,7 +144,10 @@ footer span{color:#a9bfd4}
         <h2>Exam Completed</h2>
         <p id="resultGreeting"></p>
         <div class="score-circle" id="scoreCircle">
-          <div class="score-inner"><span class="score-percent" id="scorePercent">0%</span><span class="score-small">Your score</span></div>
+          <div class="score-inner">
+            <span class="score-percent" id="scorePercent">0%</span>
+            <span class="score-small">Your score</span>
+          </div>
         </div>
         <div class="result-stats">
           <div class="stat"><strong id="correctStat">0</strong><span>Correct</span></div>
@@ -149,7 +158,7 @@ footer span{color:#a9bfd4}
       <div class="review-wrap">
         <h3 class="review-title">Answer Review</h3>
         <div id="reviewContainer"></div>
-        <button class="btn btn-secondary" onclick="window.location.reload()">Back to Start</button>
+        <button type="button" class="btn btn-secondary" id="restartBtn">Back to Start</button>
       </div>
     </section>
   </main>
@@ -161,8 +170,9 @@ footer span{color:#a9bfd4}
 </div>
 
 <script>
+"use strict";
+
 const questions = [
-  // Part 1: Nursing concepts, complementary therapies, palliative/hospice care
   {q:"According to the ANA definition, nursing includes:",o:["Treating diseases only","Protecting health, preventing illness, and relieving suffering","Performing surgery independently","Providing medication without assessment"],a:1},
   {q:"Which of the following best describes medical-surgical nursing?",o:["Caring only for children","Caring only for patients after surgery","Caring for adolescent to elderly patients in different healthcare settings","Providing care only at home"],a:2},
   {q:"Which activity is a responsibility of a medical-surgical nurse?",o:["Developing individualized patient care plans","Setting all government health policies","Replacing all physicians","Providing care without monitoring patients"],a:0},
@@ -184,7 +194,6 @@ const questions = [
   {q:"Which cardiovascular change may occur near the end of life?",o:["Permanently increased blood pressure","Irregular heart rhythm and decreased blood pressure","Consistently stronger pulse","Increased absorption of all injected medications"],a:1},
   {q:"Which urinary change may occur near the end of life?",o:["Gradually increased urine output","Increased ability to urinate","Gradual decrease in urine output","Complete absence of urinary changes"],a:2},
 
-  // Part 2: Surgery and perioperative nursing
   {q:"Which phase starts when the decision for surgery is made?",o:["Intraoperative phase","Postoperative phase","Preoperative phase","Recovery phase"],a:2},
   {q:"The intraoperative phase ends when the patient:",o:["Enters the hospital","Reaches the recovery area","Signs the consent","Starts preoperative teaching"],a:1},
   {q:"Which surgery requires immediate attention to save life?",o:["Elective surgery","Optional surgery","Required surgery","Emergency surgery"],a:3},
@@ -217,9 +226,9 @@ const questions = [
   {q:"Which finding suggests a wound infection?",o:["Wound redness and warmth","Normal wound appearance","No wound discharge","Decreased swelling"],a:0}
 ];
 
-let examQuestions = [];
-let selectedAnswers = {};
-let student = "";
+let examQuestions=[];
+let selectedAnswers={};
+let student="";
 
 function shuffle(array){
   const copy=[...array];
@@ -230,30 +239,34 @@ function shuffle(array){
   return copy;
 }
 
-document.getElementById("startBtn").addEventListener("click",startExam);
-document.getElementById("studentName").addEventListener("keydown",e=>{
-  if(e.key==="Enter")startExam();
-});
-
 function startExam(){
-  student=document.getElementById("studentName").value.trim();
+  const nameInput=document.getElementById("studentName");
+  student=nameInput.value.trim();
+
   if(!student){
     document.getElementById("startError").style.display="block";
-    document.getElementById("studentName").focus();
+    nameInput.focus();
     return;
   }
 
+  if(questions.length!==50){
+    alert("Exam setup error: expected 50 questions, found "+questions.length+".");
+    return;
+  }
+
+  selectedAnswers={};
   examQuestions=shuffle(questions).map(q=>{
-    const shuffledOptions=shuffle(q.o.map((text,index)=>({text,index})));
+    const shuffledOptions=shuffle(q.o.map((text,originalIndex)=>({text,originalIndex})));
     return {...q,options:shuffledOptions};
   });
 
   document.getElementById("startScreen").classList.add("hidden");
   document.getElementById("examScreen").classList.remove("hidden");
+  document.getElementById("startError").style.display="none";
   renderQuestions();
   updateProgress();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function renderQuestions(){
-  const container=document.getElementById("questionsContainer");
-  container.innerHTML
+  const container=document.getElementById("questionsC
