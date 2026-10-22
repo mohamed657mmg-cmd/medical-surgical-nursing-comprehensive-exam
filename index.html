@@ -4,175 +4,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Medical-Surgical Nursing | Comprehensive Exam</title>
-
+<title>Medical-Surgical Nursing Exam</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-:root{
-  --bg:#07111f;--text:#f2f7fc;--muted:#91a6bd;
-  --cyan:#48d9d0;--blue:#579bff;--green:#38c98b;--red:#ff6b7a;
-  --border:rgba(155,190,220,.15);
-}
 *{box-sizing:border-box}
 body{
-  margin:0;min-height:100vh;padding:24px 14px;
-  font-family:Inter,Arial,sans-serif;color:var(--text);
-  background:radial-gradient(ellipse at 15% 0%,rgba(42,105,164,.22),transparent 38%),
-  radial-gradient(ellipse at 90% 85%,rgba(36,183,170,.10),transparent 35%),var(--bg)
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#061426,#102d49,#07111f);
+  color:#f4f7fb;
+  min-height:100vh;
+  padding:20px;
 }
-.page{max-width:900px;margin:auto}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
-.brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.4px}
-.brand-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;color:var(--cyan);background:#163044;border:1px solid #28536a;font-size:20px}
-.status{color:var(--cyan);border:1px solid #28536a;background:#102a39;padding:7px 11px;border-radius:30px;font-size:10px;font-weight:800;letter-spacing:.6px}
-.panel{background:linear-gradient(145deg,#122236,#0c192a);border:1px solid var(--border);border-radius:22px;box-shadow:0 22px 65px #0004;overflow:hidden}
-.hero{padding:30px 32px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 95% 0%,#48d9d01c,transparent 34%)}
-.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;margin-bottom:12px}
-h1{margin:0;font-size:clamp(24px,5vw,35px);letter-spacing:-.8px;line-height:1.2}
-.subtitle{color:var(--muted);margin:10px 0 0;font-size:13px;line-height:1.7}
-.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.meta span{color:#c5d4e5;background:#ffffff08;border:1px solid var(--border);padding:8px 11px;border-radius:9px;font-size:11px}
-.content{padding:28px 32px}
-.prayer{text-align:center;border:1px solid #48d9d026;background:#48d9d009;border-radius:13px;padding:14px;margin-bottom:23px;color:#d7e9f4;font-size:13px;line-height:1.8}
-.prayer strong{display:block;color:var(--cyan);font-size:17px;margin-top:3px}
-.field-label{display:block;color:#c9d7e6;font-size:13px;font-weight:600;margin-bottom:9px}
-input[type=text]{width:100%;padding:15px;background:#091626;border:1px solid #263b53;border-radius:12px;outline:none;color:white;font:inherit;font-size:14px}
-input[type=text]:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #48d9d018}
-.btn{width:100%;border:0;border-radius:12px;padding:15px 18px;margin-top:16px;cursor:pointer;font:inherit;font-weight:800;font-size:14px;transition:transform .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{color:#061522;background:linear-gradient(100deg,var(--cyan),#71f0c4);box-shadow:0 8px 24px #48d9d020}
-.btn-secondary{color:#dbe8f5;background:#1a2d44;border:1px solid var(--border)}
-.notice{text-align:center;color:var(--muted);font-size:11px;line-height:1.7;margin-top:13px}
-.error{display:none;color:#ff9aa5;font-size:12px;margin-top:12px;text-align:center}
-.exam-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px}
-.exam-label{color:var(--muted);font-size:12px;font-weight:600}
-.counter{color:var(--cyan);font-size:12px;font-weight:800}
-.progress-track{height:6px;background:#26374c;border-radius:20px;overflow:hidden;margin-bottom:25px}
-.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .25s}
-.question-card{padding:20px;border:1px solid var(--border);border-radius:15px;background:#07111f70;margin-bottom:15px}
-.question-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.q-number{width:31px;height:31px;flex:0 0 31px;display:grid;place-items:center;border-radius:9px;color:var(--cyan);background:#48d9d018;font-size:11px;font-weight:800}
-.q-tag{color:#7891aa;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
-.question-text{font-size:15px;font-weight:700;line-height:1.65;margin:0 0 16px}
-.options{display:grid;gap:9px}
-.option{display:flex;align-items:flex-start;gap:11px;padding:12px 13px;border-radius:11px;border:1px solid #263b53;background:#14263bba;cursor:pointer;color:#c7d5e4;font-size:13px;line-height:1.55;transition:.15s}
-.option:hover:not(.locked){border-color:#48d9d08c;background:#48d9d009}
-.option-letter{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;border-radius:7px;background:#253950;color:#a9c1d7;font-size:11px;font-weight:800}
-.option.selected{border-color:var(--cyan);background:#48d9d018;color:#f3ffff}
-.option.selected .option-letter{color:#07111f;background:var(--cyan)}
-.option.locked{cursor:default}
-.result-top{text-align:center;padding:34px 20px 27px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 50% 0%,#48d9d01f,transparent 55%)}
-.result-icon{width:60px;height:60px;display:grid;place-items:center;margin:0 auto 15px;border-radius:19px;background:#48d9d018;border:1px solid #48d9d040;color:var(--cyan);font-size:27px}
-.result-top h2{margin:0;font-size:25px}
-.result-top p{color:var(--muted);font-size:13px;margin:9px 0 0}
-.score-circle{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;margin:24px auto 0;background:conic-gradient(var(--cyan) var(--score-angle),#26394d 0);position:relative}
-.score-circle:before{content:"";position:absolute;inset:9px;border-radius:50%;background:#102137}
-.score-inner{position:relative;text-align:center}
-.score-percent{display:block;font-size:30px;font-weight:800}
-.score-small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
-.result-stats{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:20px}
-.stat{min-width:95px;padding:11px 14px;border:1px solid var(--border);background:#ffffff08;border-radius:11px}
-.stat strong{display:block;font-size:18px;margin-bottom:4px}
-.stat span{color:var(--muted);font-size:11px}
-.review-wrap{padding:26px 32px 32px}
-.review-title{font-size:17px;margin:0 0 17px}
-.review-item{border:1px solid var(--border);border-radius:12px;padding:15px;margin-bottom:11px;background:#07111f55}
-.review-item.correct{border-left:3px solid var(--green)}
-.review-item.wrong{border-left:3px solid var(--red)}
-.review-q{font-size:13px;font-weight:700;line-height:1.6;margin-bottom:10px}
-.review-line{font-size:12px;line-height:1.7;margin-top:5px;color:#b9cadb}
-.correct-text{color:var(--green)}.wrong-text{color:var(--red)}
-footer{text-align:center;color:#71879e;font-size:11px;line-height:1.9;margin-top:21px}
-footer span{color:#a9bfd4}
+.container{max-width:900px;margin:auto}
+header{text-align:center;padding:20px 10px}
+header h1{margin:0;color:#55d6ff;font-size:clamp(23px,5vw,34px)}
+header p{color:#b8c9da;line-height:1.6}
+.card{
+  background:#10243a;
+  border:1px solid #244661;
+  border-radius:16px;
+  padding:24px;
+  margin:18px 0;
+  box-shadow:0 12px 30px #0004;
+}
 .hidden{display:none!important}
-@media(max-width:600px){
-  body{padding:16px 10px}
-  .hero{padding:24px 20px}
-  .content{padding:22px 17px}
-  .question-card{padding:16px 13px}
-  .question-text{font-size:14px}
-  .option{padding:11px;font-size:12px}
-  .review-wrap{padding:22px 17px}
-  .brand{font-size:11px}
-  .status{font-size:9px}
+button{
+  border:0;border-radius:10px;padding:13px 22px;
+  font-size:16px;font-weight:bold;cursor:pointer;
 }
+.primary{background:#19bce5;color:#061426}
+.secondary{background:#29445d;color:#fff}
+button:hover{filter:brightness(1.1)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.start-area{text-align:center}
+.start-area p{line-height:1.8;color:#d0dce7}
+.progress-wrap{height:9px;background:#263d53;border-radius:20px;overflow:hidden;margin:15px 0}
+.progress{height:100%;width:0;background:#19bce5;transition:width .2s}
+.topline{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#b9d0e2;font-size:14px}
+.question{
+  padding:18px 0;border-bottom:1px solid #29445d;
+}
+.question:last-child{border-bottom:0}
+.question h3{font-size:17px;line-height:1.5;margin:0 0 13px}
+.option{
+  display:block;padding:12px 14px;margin:8px 0;
+  border:1px solid #35536d;border-radius:10px;
+  background:#0b1b2d;cursor:pointer;line-height:1.5;
+}
+.option:hover{border-color:#19bce5}
+.option input{margin-right:9px;accent-color:#19bce5}
+.option.selected{border-color:#19bce5;background:#123a50}
+.actions{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:22px}
+#resultScore{font-size:42px;font-weight:bold;color:#55d6ff;text-align:center}
+.result-message{text-align:center;color:#d1dfeb}
+.review-item{padding:16px 0;border-bottom:1px solid #29445d;line-height:1.65}
+.correct{color:#65e6a5}
+.wrong{color:#ff9292}
+.review-item p{margin:7px 0}
+footer{text-align:center;color:#8da6bb;font-size:13px;padding:22px 5px}
+@media(max-width:600px){body{padding:12px}.card{padding:17px}.actions button{flex:1}}
 </style>
 </head>
-
 <body>
-<div class="page">
-  <header class="topbar">
-    <div class="brand"><div class="brand-icon">✚</div><span>NURSING EXAM PORTAL</span></div>
-    <div class="status">● ONLINE EXAM</div>
+<div class="container">
+  <header>
+    <h1>Medical-Surgical Nursing Exam</h1>
+    <p>50 MCQs | Nursing Care, Palliative Care, Surgery & Perioperative Nursing</p>
   </header>
 
-  <main class="panel">
-    <section class="hero">
-      <div class="eyebrow">Comprehensive Assessment</div>
-      <h1>Medical-Surgical Nursing</h1>
-      <p class="subtitle">Nursing Concepts · Palliative & Hospice Care · Surgery · Perioperative Care</p>
-      <div class="meta">
-        <span>50 MCQs</span><span>Above Intermediate</span><span>Multiple Choice</span>
-      </div>
-    </section>
+  <section id="startScreen" class="card start-area">
+    <h2>Ready to start?</h2>
+    <p>
+      This exam contains 50 multiple-choice questions.<br>
+      Choose one answer for each question, then submit to see your score
+      and review the correct answers.
+    </p>
+    <button class="primary" id="startBtn" type="button">Start Exam</button>
+  </section>
 
-    <section class="content" id="startScreen">
-      <div class="prayer">Before you begin your exam<strong>صلّي على النبي ﷺ ❤️</strong></div>
-      <label class="field-label" for="studentName">Student full name</label>
-      <input id="studentName" type="text" placeholder="Enter your name" maxlength="80" autocomplete="name">
-      <button type="button" class="btn btn-primary" id="startBtn">Start Exam →</button>
-      <div class="notice">Read each question carefully. You can select only one answer per question.</div>
-      <div class="error" id="startError">Please enter your name before starting.</div>
-    </section>
+  <section id="examScreen" class="card hidden">
+    <div class="topline">
+      <span id="progressText">Question 1 of 50</span>
+      <span id="answeredText">Answered: 0 / 50</span>
+    </div>
+    <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
+    <div id="questionsContainer"></div>
+    <div class="actions">
+      <button class="secondary" id="backBtn" type="button">Previous</button>
+      <button class="primary" id="nextBtn" type="button">Next</button>
+      <button class="primary hidden" id="submitBtn" type="button">Submit Exam</button>
+    </div>
+  </section>
 
-    <section class="content hidden" id="examScreen">
-      <div class="exam-head">
-        <div class="exam-label">Choose the best answer</div>
-        <div class="counter" id="answeredCount">0 / 50 answered</div>
-      </div>
-      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-      <div id="questionsContainer"></div>
-      <button type="button" class="btn btn-primary" id="submitBtn">Submit Exam</button>
-      <div class="error" id="submitError">Please answer all questions before submitting.</div>
-      <div class="notice">Your selected answer will be locked. Review your choices before submitting.</div>
-    </section>
-
-    <section class="hidden" id="resultScreen">
-      <div class="result-top">
-        <div class="result-icon">✓</div>
-        <h2>Exam Completed</h2>
-        <p id="resultGreeting"></p>
-        <div class="score-circle" id="scoreCircle">
-          <div class="score-inner">
-            <span class="score-percent" id="scorePercent">0%</span>
-            <span class="score-small">Your score</span>
-          </div>
-        </div>
-        <div class="result-stats">
-          <div class="stat"><strong id="correctStat">0</strong><span>Correct</span></div>
-          <div class="stat"><strong id="wrongStat">0</strong><span>Incorrect</span></div>
-          <div class="stat"><strong>50</strong><span>Total questions</span></div>
-        </div>
-      </div>
-      <div class="review-wrap">
-        <h3 class="review-title">Answer Review</h3>
-        <div id="reviewContainer"></div>
-        <button type="button" class="btn btn-secondary" id="restartBtn">Back to Start</button>
-      </div>
-    </section>
-  </main>
+  <section id="resultScreen" class="card hidden">
+    <h2 style="text-align:center">Exam Result</h2>
+    <div id="resultScore"></div>
+    <p class="result-message" id="resultMessage"></p>
+    <div class="actions">
+      <button class="secondary" id="reviewBtn" type="button">Review Answers</button>
+      <button class="primary" id="restartBtn" type="button">Restart Exam</button>
+    </div>
+    <div id="reviewContainer" class="hidden"></div>
+  </section>
 
   <footer>
-    <div>Designed by <span>Mohamed Mahmoud</span></div>
-    <div>Exam Author: <span>Omar Abdel-Tawab</span></div>
+    Designed by Mohamed Mahmoud<br>
+    Exam Author: Omar Abdel-Tawab
   </footer>
 </div>
 
 <script>
-"use strict";
-
 const questions = [
+  // Part 1: Nursing concepts, complementary therapies, palliative and hospice care
   {q:"According to the ANA definition, nursing includes:",o:["Treating diseases only","Protecting health, preventing illness, and relieving suffering","Performing surgery independently","Providing medication without assessment"],a:1},
   {q:"Which of the following best describes medical-surgical nursing?",o:["Caring only for children","Caring only for patients after surgery","Caring for adolescent to elderly patients in different healthcare settings","Providing care only at home"],a:2},
   {q:"Which activity is a responsibility of a medical-surgical nurse?",o:["Developing individualized patient care plans","Setting all government health policies","Replacing all physicians","Providing care without monitoring patients"],a:0},
@@ -194,6 +137,7 @@ const questions = [
   {q:"Which cardiovascular change may occur near the end of life?",o:["Permanently increased blood pressure","Irregular heart rhythm and decreased blood pressure","Consistently stronger pulse","Increased absorption of all injected medications"],a:1},
   {q:"Which urinary change may occur near the end of life?",o:["Gradually increased urine output","Increased ability to urinate","Gradual decrease in urine output","Complete absence of urinary changes"],a:2},
 
+  // Part 2: Surgery and perioperative nursing
   {q:"Which phase starts when the decision for surgery is made?",o:["Intraoperative phase","Postoperative phase","Preoperative phase","Recovery phase"],a:2},
   {q:"The intraoperative phase ends when the patient:",o:["Enters the hospital","Reaches the recovery area","Signs the consent","Starts preoperative teaching"],a:1},
   {q:"Which surgery requires immediate attention to save life?",o:["Elective surgery","Optional surgery","Required surgery","Emergency surgery"],a:3},
@@ -226,47 +170,148 @@ const questions = [
   {q:"Which finding suggests a wound infection?",o:["Wound redness and warmth","Normal wound appearance","No wound discharge","Decreased swelling"],a:0}
 ];
 
-let examQuestions=[];
-let selectedAnswers={};
-let student="";
+let current = 0;
+let answers = Array(questions.length).fill(null);
+let shuffledOptions = [];
 
-function shuffle(array){
-  const copy=[...array];
-  for(let i=copy.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [copy[i],copy[j]]=[copy[j],copy[i]];
-  }
-  return copy;
+const startScreen = document.getElementById("startScreen");
+const examScreen = document.getElementById("examScreen");
+const resultScreen = document.getElementById("resultScreen");
+const questionsContainer = document.getElementById("questionsContainer");
+
+function prepareOptions(){
+  shuffledOptions = questions.map(question =>
+    question.o.map((text,index)=>({text,originalIndex:index}))
+      .sort(()=>Math.random()-0.5)
+  );
 }
 
 function startExam(){
-  const nameInput=document.getElementById("studentName");
-  student=nameInput.value.trim();
-
-  if(!student){
-    document.getElementById("startError").style.display="block";
-    nameInput.focus();
-    return;
-  }
-
-  if(questions.length!==50){
-    alert("Exam setup error: expected 50 questions, found "+questions.length+".");
-    return;
-  }
-
-  selectedAnswers={};
-  examQuestions=shuffle(questions).map(q=>{
-    const shuffledOptions=shuffle(q.o.map((text,originalIndex)=>({text,originalIndex})));
-    return {...q,options:shuffledOptions};
-  });
-
-  document.getElementById("startScreen").classList.add("hidden");
-  document.getElementById("examScreen").classList.remove("hidden");
-  document.getElementById("startError").style.display="none";
-  renderQuestions();
-  updateProgress();
-  window.scrollTo({top:0,behavior:"smooth"});
+  current = 0;
+  answers = Array(questions.length).fill(null);
+  prepareOptions();
+  startScreen.classList.add("hidden");
+  resultScreen.classList.add("hidden");
+  examScreen.classList.remove("hidden");
+  document.getElementById("reviewContainer").classList.add("hidden");
+  renderQuestion();
 }
 
-function renderQuestions(){
-  const container=document.getElementById("questionsC
+function renderQuestion(){
+  const question = questions[current];
+  const options = shuffledOptions[current];
+
+  document.getElementById("progressText").textContent =
+    `Question ${current+1} of ${questions.length}`;
+  document.getElementById("answeredText").textContent =
+    `Answered: ${answers.filter(a=>a!==null).length} / ${questions.length}`;
+  document.getElementById("progressBar").style.width =
+    `${((current+1)/questions.length)*100}%`;
+
+  questionsContainer.innerHTML = `
+    <div class="question">
+      <h3>Q${current+1}. ${question.q}</h3>
+      ${options.map((option,index)=>`
+        <label class="option ${answers[current]===option.originalIndex?"selected":""}">
+          <input type="radio" name="answer" value="${option.originalIndex}"
+            ${answers[current]===option.originalIndex?"checked":""}>
+          ${String.fromCharCode(65+index)}. ${escapeHTML(option.text)}
+        </label>
+      `).join("")}
+    </div>
+  `;
+
+  questionsContainer.querySelectorAll('input[name="answer"]').forEach(input=>{
+    input.addEventListener("change",()=>{
+      answers[current]=Number(input.value);
+      renderQuestion();
+    });
+  });
+
+  document.getElementById("backBtn").disabled = current===0;
+  document.getElementById("nextBtn").classList.toggle("hidden",current===questions.length-1);
+  document.getElementById("submitBtn").classList.toggle("hidden",current!==questions.length-1);
+}
+
+function escapeHTML(value){
+  return value.replace(/[&<>"']/g,char=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
+}
+
+function updateAnswered(){
+  document.getElementById("answeredText").textContent =
+    `Answered: ${answers.filter(a=>a!==null).length} / ${questions.length}`;
+}
+
+document.getElementById("startBtn").addEventListener("click",startExam);
+
+document.getElementById("nextBtn").addEventListener("click",()=>{
+  if(current<questions.length-1){current++;renderQuestion();}
+});
+
+document.getElementById("backBtn").addEventListener("click",()=>{
+  if(current>0){current--;renderQuestion();}
+});
+
+document.getElementById("submitBtn").addEventListener("click",()=>{
+  const unanswered=answers.filter(a=>a===null).length;
+  if(unanswered>0){
+    alert(`Please answer all questions first. Unanswered: ${unanswered}`);
+    const firstUnanswered=answers.findIndex(a=>a===null);
+    if(firstUnanswered>=0){current=firstUnanswered;renderQuestion();}
+    return;
+  }
+  showResults();
+});
+
+function showResults(){
+  const score=answers.reduce((total,answer,index)=>
+    total+(answer===questions[index].a?1:0),0);
+  const percent=Math.round(score/questions.length*100);
+
+  examScreen.classList.add("hidden");
+  resultScreen.classList.remove("hidden");
+  document.getElementById("resultScore").textContent=`${score} / ${questions.length}`;
+  document.getElementById("resultMessage").textContent=`Your score: ${percent}%`;
+  document.getElementById("reviewContainer").classList.add("hidden");
+  document.getElementById("reviewBtn").textContent="Review Answers";
+}
+
+function showReview(){
+  const review=document.getElementById("reviewContainer");
+  review.innerHTML=questions.map((question,index)=>{
+    const isCorrect=answers[index]===question.a;
+    const chosen=answers[index];
+    return `
+      <div class="review-item">
+        <strong>Q${index+1}. ${escapeHTML(question.q)}</strong>
+        <p class="${isCorrect?"correct":"wrong"}">
+          Your answer: ${chosen===null?"Not answered":escapeHTML(question.o[chosen])}
+          ${isCorrect?" — Correct":" — Incorrect"}
+        </p>
+        <p class="correct">Correct answer: ${escapeHTML(question.o[question.a])}</p>
+      </div>
+    `;
+  }).join("");
+  review.classList.remove("hidden");
+  document.getElementById("reviewBtn").textContent="Hide Review";
+}
+
+document.getElementById("reviewBtn").addEventListener("click",()=>{
+  const review=document.getElementById("reviewContainer");
+  if(review.classList.contains("hidden")) showReview();
+  else {
+    review.classList.add("hidden");
+    document.getElementById("reviewBtn").textContent="Review Answers";
+  }
+});
+
+document.getElementById("restartBtn").addEventListener("click",()=>{
+  resultScreen.classList.add("hidden");
+  startScreen.classList.remove("hidden");
+});
+</script>
+</body>
+  </html>
+  
