@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical-Surgical Nursing | Comprehensive Exam</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#07111f; --panel:#101e31; --text:#f2f7fc; --muted:#91a6bd;
+  --cyan:#48d9d0; --blue:#579bff; --green:#38c98b; --red:#ff6b7a;
+  --border:rgba(155,190,220,.15);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:24px 14px;
+  font-family:Inter,Arial,sans-serif;color:var(--text);
+  background:radial-gradient(ellipse at 15% 0%,rgba(42,105,164,.22),transparent 38%),
+  radial-gradient(ellipse at 90% 85%,rgba(36,183,170,.10),transparent 35%),var(--bg)
+}
+.page{max-width:900px;margin:auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.4px}
+.brand-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;color:var(--cyan);background:#163044;border:1px solid #28536a;font-size:20px}
+.status{color:var(--cyan);border:1px solid #28536a;background:#102a39;padding:7px 11px;border-radius:30px;font-size:10px;font-weight:800;letter-spacing:.6px}
+.panel{background:linear-gradient(145deg,#122236,#0c192a);border:1px solid var(--border);border-radius:22px;box-shadow:0 22px 65px #0004;overflow:hidden}
+.hero{padding:30px 32px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 95% 0%,#48d9d01c,transparent 34%)}
+.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;margin-bottom:12px}
+h1{margin:0;font-size:clamp(24px,5vw,35px);letter-spacing:-.8px;line-height:1.2}
+.subtitle{color:var(--muted);margin:10px 0 0;font-size:13px;line-height:1.7}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.meta span{color:#c5d4e5;background:#ffffff08;border:1px solid var(--border);padding:8px 11px;border-radius:9px;font-size:11px}
+.content{padding:28px 32px}
+.prayer{text-align:center;border:1px solid #48d9d026;background:#48d9d009;border-radius:13px;padding:14px;margin-bottom:23px;color:#d7e9f4;font-size:13px;line-height:1.8}
+.prayer strong{display:block;color:var(--cyan);font-size:17px;margin-top:3px}
+.field-label{display:block;color:#c9d7e6;font-size:13px;font-weight:600;margin-bottom:9px}
+input[type=text]{width:100%;padding:15px;background:#091626;border:1px solid #263b53;border-radius:12px;outline:none;color:white;font:inherit;font-size:14px}
+input[type=text]:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #48d9d018}
+.btn{width:100%;border:0;border-radius:12px;padding:15px 18px;margin-top:16px;cursor:pointer;font:inherit;font-weight:800;font-size:14px;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{color:#061522;background:linear-gradient(100deg,var(--cyan),#71f0c4);box-shadow:0 8px 24px #48d9d020}
+.btn-secondary{color:#dbe8f5;background:#1a2d44;border:1px solid var(--border)}
+.notice{text-align:center;color:var(--muted);font-size:11px;line-height:1.7;margin-top:13px}
+.error{display:none;color:#ff9aa5;font-size:12px;margin-top:12px;text-align:center}
+.exam-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px}
+.exam-label{color:var(--muted);font-size:12px;font-weight:600}
+.counter{color:var(--cyan);font-size:12px;font-weight:800}
+.progress-track{height:6px;background:#26374c;border-radius:20px;overflow:hidden;margin-bottom:25px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .25s}
+.question-card{padding:20px;border:1px solid var(--border);border-radius:15px;background:#07111f70;margin-bottom:15px}
+.question-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.q-number{width:31px;height:31px;flex:0 0 31px;display:grid;place-items:center;border-radius:9px;color:var(--cyan);background:#48d9d018;font-size:11px;font-weight:800}
+.q-tag{color:#7891aa;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.question-text{font-size:15px;font-weight:700;line-height:1.65;margin:0 0 16px}
+.options{display:grid;gap:9px}
+.option{display:flex;align-items:flex-start;gap:11px;padding:12px 13px;border-radius:11px;border:1px solid #263b53;background:#14263bba;cursor:pointer;color:#c7d5e4;font-size:13px;line-height:1.55;transition:.15s}
+.option:hover:not(.locked){border-color:#48d9d08c;background:#48d9d009}
+.option-letter{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;border-radius:7px;background:#253950;color:#a9c1d7;font-size:11px;font-weight:800}
+.option.selected{border-color:var(--cyan);background:#48d9d018;color:#f3ffff}
+.option.selected .option-letter{color:#07111f;background:var(--cyan)}
+.option.locked{cursor:default}
+.result-top{text-align:center;padding:34px 20px 27px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 50% 0%,#48d9d01f,transparent 55%)}
+.result-icon{width:60px;height:60px;display:grid;place-items:center;margin:0 auto 15px;border-radius:19px;background:#48d9d018;border:1px solid #48d9d040;color:var(--cyan);font-size:27px}
+.result-top h2{margin:0;font-size:25px}
+.result-top p{color:var(--muted);font-size:13px;margin:9px 0 0}
+.score-circle{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;margin:24px auto 0;background:conic-gradient(var(--cyan) var(--score-angle),#26394d 0);position:relative}
+.score-circle:before{content:"";position:absolute;inset:9px;border-radius:50%;background:#102137}
+.score-inner{position:relative;text-align:center}
+.score-percent{display:block;font-size:30px;font-weight:800}
+.score-small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.result-stats{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:20px}
+.stat{min-width:95px;padding:11px 14px;border:1px solid var(--border);background:#ffffff08;border-radius:11px}
+.stat strong{display:block;font-size:18px;margin-bottom:4px}
+.stat span{color:var(--muted);font-size:11px}
+.review-wrap{padding:26px 32px 32px}
+.review-title{font-size:17px;margin:0 0 17px}
+.review-item{border:1px solid var(--border);border-radius:12px;padding:15px;margin-bottom:11px;background:#07111f55}
+.review-item.correct{border-left:3px solid var(--green)}
+.review-item.wrong{border-left:3px solid var(--red)}
+.review-q{font-size:13px;font-weight:700;line-height:1.6;margin-bottom:10px}
+.review-line{font-size:12px;line-height:1.7;margin-top:5px;color:#b9cadb}
+.correct-text{color:var(--green)}.wrong-text{color:var(--red)}
+footer{text-align:center;color:#71879e;font-size:11px;line-height:1.9;margin-top:21px}
+footer span{color:#a9bfd4}
+.hidden{display:none!important}
+@media(max-width:600px){
+ body{padding:16px 10px}.hero{padding:24px 20px}.content{padding:22px 17px}
+ .question-card{padding:16px 13px}.question-text{font-size:14px}.option{padding:11px;font-size:12px}
+ .review-wrap{padding:22px 17px}.brand{font-size:11px}.status{font-size:9px}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+  <header class="topbar">
+    <div class="brand"><div class="brand-icon">✚</div><span>NURSING EXAM PORTAL</span></div>
+    <div class="status">● ONLINE EXAM</div>
+  </header>
+
+  <main class="panel">
+    <section class="hero">
+      <div class="eyebrow">Comprehensive Assessment</div>
+      <h1>Medical-Surgical Nursing</h1>
+      <p class="subtitle">Nursing Concepts · Palliative & Hospice Care · Surgery · Perioperative Care</p>
+      <div class="meta">
+        <span>50 MCQs</span><span>Above Intermediate</span><span>Multiple Choice</span>
+      </div>
+    </section>
+
+    <section class="content" id="startScreen">
+      <div class="prayer">Before you begin your exam<strong>صلّي على النبي ﷺ ❤️</strong></div>
+      <label class="field-label" for="studentName">Student full name</label>
+      <input id="studentName" type="text" placeholder="Enter your name" maxlength="80" autocomplete="name">
+      <button class="btn btn-primary" id="startBtn">Start Exam →</button>
+      <div class="notice">Read each question carefully. You can select only one answer per question.</div>
+      <div class="error" id="startError">Please enter your name before starting.</div>
+    </section>
+
+    <section class="content hidden" id="examScreen">
+      <div class="exam-head">
+        <div class="exam-label">Choose the best answer</div>
+        <div class="counter" id="answeredCount">0 / 50 answered</div>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div id="questionsContainer"></div>
+      <button class="btn btn-primary" id="submitBtn">Submit Exam</button>
+      <div class="error" id="submitError">Please answer all questions before submitting.</div>
+      <div class="notice">Your selected answer will be locked. Review your choices before submitting.</div>
+    </section>
+
+    <section class="hidden" id="resultScreen">
+      <div class="result-top">
+        <div class="result-icon">✓</div>
+        <h2>Exam Completed</h2>
+        <p id="resultGreeting"></p>
+        <div class="score-circle" id="scoreCircle">
+          <div class="score-inner"><span class="score-percent" id="scorePercent">0%</span><span class="score-small">Your score</span></div>
+        </div>
+        <div class="result-stats">
+          <div class="stat"><strong id="correctStat">0</strong><span>Correct</span></div>
+          <div class="stat"><strong id="wrongStat">0</strong><span>Incorrect</span></div>
+          <div class="stat"><strong>50</strong><span>Total questions</span></div>
+        </div>
+      </div>
+      <div class="review-wrap">
+        <h3 class="review-title">Answer Review</h3>
+        <div id="reviewContainer"></div>
+        <button class="btn btn-secondary" onclick="window.location.reload()">Back to Start</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>Designed by <span>Mohamed Mahmoud</span></div>
+    <div>Exam Author: <span>Omar Abdel-Tawab</span></div>
+  </footer>
+</div>
+
+<script>
+const questions = [
+  // Part 1: Nursing concepts, complementary therapies, palliative/hospice care
+  {q:"According to the ANA definition, nursing includes:",o:["Treating diseases only","Protecting health, preventing illness, and relieving suffering","Performing surgery independently","Providing medication without assessment"],a:1},
+  {q:"Which of the following best describes medical-surgical nursing?",o:["Caring only for children","Caring only for patients after surgery","Caring for adolescent to elderly patients in different healthcare settings","Providing care only at home"],a:2},
+  {q:"Which activity is a responsibility of a medical-surgical nurse?",o:["Developing individualized patient care plans","Setting all government health policies","Replacing all physicians","Providing care without monitoring patients"],a:0},
+  {q:"Rapid advances in healthcare tools and information are examples of:",o:["Consumer expectations","Technology and knowledge growth","Hospice services","Natural products"],a:1},
+  {q:"Caring for patients from different cultural backgrounds is related to:",o:["Health financing","Population diversity","Drug absorption","Brain death"],a:1},
+  {q:"Government and insurance policies mainly influence nursing care through:",o:["Health financing","Guided imagery","Massage therapy","Sensory changes"],a:0},
+  {q:"Which organization is mentioned in the chapter as supporting professional nursing practice?",o:["American Nurses Association (ANA)","World Trade Organization (WTO)","International Olympic Committee (IOC)","World Tourism Organization (UN Tourism)"],a:0},
+  {q:"Complementary and alternative therapies are generally:",o:["Always part of conventional medicine","Diverse healthcare systems, practices, and products not generally considered conventional medicine","Limited to surgical procedures","Used only in intensive care units"],a:1},
+  {q:"Which of the following is an example of a natural product?",o:["Guided imagery","Herbal therapy","Massage","Relaxation breathing"],a:1},
+  {q:"Meditation and guided imagery belong to which category?",o:["Natural products","Health financing","Mind-body medicine","Manipulative and body-based practices only"],a:2},
+  {q:"Which therapy is classified as a manipulative and body-based practice in the chapter?",o:["Vitamin supplementation","Aromatherapy","Massage","Prayer"],a:2},
+  {q:"According to the chapter, nurses may use complementary therapies when they have:",o:["Training and experience","No clinical knowledge","No communication with the healthcare team","No understanding of the patient's needs"],a:0},
+  {q:"The primary focus of palliative care is to:",o:["Cure every disease","Reduce the severity of disease symptoms","Stop all nursing interventions","Delay death in every patient"],a:1},
+  {q:"Which of the following is a goal of palliative care?",o:["Hasten death","Postpone death in every circumstance","Relieve symptoms and enhance quality of life","Provide support to the patient but never the family"],a:2},
+  {q:"Hospice care is best described as:",o:["A form of care focused on comfort and support during the final stages of life","A service used only to cure acute infections","A replacement for all family support","A treatment designed to reverse every terminal illness"],a:0},
+  {q:"Which of the following is a foundation of hospice services?",o:["Ignoring the patient's values","Emotional support for the patient and family","Focusing only on laboratory results","Avoiding physical comfort measures"],a:1},
+  {q:"End-of-life care addresses which two major areas of need?",o:["Physical and psychosocial needs","Financial and recreational needs only","Surgical and diagnostic needs only","Educational and occupational needs only"],a:0},
+  {q:"Which sense usually remains until the latest stage of the dying process, according to the chapter?",o:["Sight","Taste","Hearing","Smell"],a:2},
+  {q:"Which cardiovascular change may occur near the end of life?",o:["Permanently increased blood pressure","Irregular heart rhythm and decreased blood pressure","Consistently stronger pulse","Increased absorption of all injected medications"],a:1},
+  {q:"Which urinary change may occur near the end of life?",o:["Gradually increased urine output","Increased ability to urinate","Gradual decrease in urine output","Complete absence of urinary changes"],a:2},
+
+  // Part 2: Surgery and perioperative nursing
+  {q:"Which phase starts when the decision for surgery is made?",o:["Intraoperative phase","Postoperative phase","Preoperative phase","Recovery phase"],a:2},
+  {q:"The intraoperative phase ends when the patient:",o:["Enters the hospital","Reaches the recovery area","Signs the consent","Starts preoperative teaching"],a:1},
+  {q:"Which surgery requires immediate attention to save life?",o:["Elective surgery","Optional surgery","Required surgery","Emergency surgery"],a:3},
+  {q:"Surgery for an acute gallbladder infection is classified as:",o:["Emergency","Urgent","Elective","Optional"],a:1},
+  {q:"Which surgery is performed according to the patient's preference?",o:["Diagnostic","Curative","Optional","Preventive"],a:2},
+  {q:"A biopsy is an example of:",o:["Diagnostic surgery","Reconstructive surgery","Palliative surgery","Aesthetic surgery"],a:0},
+  {q:"Removing diseased tissue is called:",o:["Exploratory surgery","Curative surgery","Reconstructive surgery","Aesthetic surgery"],a:1},
+  {q:"Which surgery aims to relieve pain?",o:["Preventive","Diagnostic","Palliative","Exploratory"],a:2},
+  {q:"Which type of surgery involves greater risks and complications?",o:["Minor surgery","Major surgery","Elective surgery","Optional surgery"],a:1},
+  {q:"Which factor may increase surgical complications?",o:["Balanced nutrition","Normal fluid balance","Malnutrition","Adequate hydration"],a:2},
+  {q:"Which nutrient is important for wound healing?",o:["Vitamin C","Alcohol","Nicotine","None of the above"],a:0},
+  {q:"Which condition increases surgical risk?",o:["Normal electrolytes","Dehydration","Adequate nutrition","Normal body temperature"],a:1},
+  {q:"Preoperative psychosocial assessment focuses on:",o:["Fear and anxiety","Wound drainage","Bowel sounds after surgery","Urinary output after surgery"],a:0},
+  {q:"Which is a preoperative nursing diagnosis?",o:["Impaired skin integrity after surgery","Anxiety related to surgery","Wound infection","Deep vein thrombosis"],a:1},
+  {q:"Why should the nurse explain the surgical procedure?",o:["To increase anxiety","To reduce anxiety","To delay surgery","To prevent informed consent"],a:1},
+  {q:"What is required before surgery?",o:["Verbal information only","Informed consent","Postoperative discharge","Wound dressing removal"],a:1},
+  {q:"Which exercise helps prevent venous stasis?",o:["Foot and leg exercises","Breath-holding","Complete immobility","Avoiding movement"],a:0},
+  {q:"Before abdominal surgery, the patient may need:",o:["A full meal at midnight","NPO status","Extra smoking","No preoperative assessment"],a:1},
+  {q:"Which action is appropriate on the day of surgery?",o:["Keep dentures in place","Apply colored nail polish","Check baseline vital signs","Ignore the ID band"],a:2},
+  {q:"Which action helps promote preoperative sleep?",o:["A noisy room","An uncomfortable bed","A well-ventilated room","Excessive stimulation"],a:2},
+  {q:"Which team member maintains the sterile field?",o:["Scrub nurse","Patient transporter","Ward clerk","Visitor"],a:0},
+  {q:"The circulating nurse checks:",o:["Only the patient's diet","Operating room safety","Only discharge instructions","Only the patient's sleep"],a:1},
+  {q:"Why are surgical instruments counted?",o:["To reduce documentation","To prevent retained items","To shorten the patient's history","To increase blood loss"],a:1},
+  {q:"Which position is commonly used for kidney surgery?",o:["Lithotomy","Prone","Lateral","Trendelenburg"],a:2},
+  {q:"Which is a type of anesthesia?",o:["General","Diagnostic","Curative","Preventive"],a:0},
+  {q:"Which is a possible complication of anesthesia?",o:["Hypothermia","Improved wound infection","Increased nutrition","Better fluid balance"],a:0},
+  {q:"What is a main goal of postoperative care?",o:["Increase pain","Prevent complications","Delay recovery","Reduce monitoring"],a:1},
+  {q:"Which finding may indicate deep vein thrombosis?",o:["Leg swelling and pain","Improved appetite","Normal skin color","Reduced anxiety"],a:0},
+  {q:"Which intervention helps prevent pulmonary complications?",o:["Prolonged immobility","Deep breathing and coughing","Avoiding ambulation","Restricting all movement"],a:1},
+  {q:"Which finding suggests a wound infection?",o:["Wound redness and warmth","Normal wound appearance","No wound discharge","Decreased swelling"],a:0}
+];
+
+let examQuestions = [];
+let selectedAnswers = {};
+let student = "";
+
+function shuffle(array){
+  const copy=[...array];
+  for(let i=copy.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [copy[i],copy[j]]=[copy[j],copy[i]];
+  }
+  return copy;
+}
+
+document.getElementById("startBtn").addEventListener("click",startExam);
+document.getElementById("studentName").addEventListener("keydown",e=>{
+  if(e.key==="Enter")startExam();
+});
+
+function startExam(){
+  student=document.getElementById("studentName").value.trim();
+  if(!student){
+    document.getElementById("startError").style.display="block";
+    document.getElementById("studentName").focus();
+    return;
+  }
+
+  examQuestions=shuffle(questions).map(q=>{
+    const shuffledOptions=shuffle(q.o.map((text,index)=>({text,index})));
+    return {...q,options:shuffledOptions};
+  });
+
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("examScreen").classList.remove("hidden");
+  renderQuestions();
+  updateProgress();
+}
+
+function renderQuestions(){
+  const container=document.getElementById("questionsContainer");
+  container.innerHTML
